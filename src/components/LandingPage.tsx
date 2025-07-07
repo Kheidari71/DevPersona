@@ -59,7 +59,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartTest }) => {
             Start Your Assessment
           </button>
           <p className="text-gray-400 mt-4 text-sm" style={{color: '#9ca3af', marginTop: '1rem', fontSize: '0.875rem', fontFamily: 'Inter, sans-serif'}}>
-            Takes only 5 minutes • 100% Free • No registration required
+            Takes only 5 minutes • 100% Free • No registration required.
           </p>
         </div>
 
