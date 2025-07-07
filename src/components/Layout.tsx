@@ -18,9 +18,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <h1 className="text-white text-xl font-bold" style={{fontFamily: 'Orbitron, monospace', letterSpacing: '0.05em'}}>DevPersona</h1>
             </div>
             <nav className="hidden md:flex items-center space-x-6">
-              <a href="#" className="text-gray-300 hover:text-white transition-colors" style={{color: '#d1d5db', fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em'}}>About</a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors" style={{color: '#d1d5db', fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em'}}>Features</a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors" style={{color: '#d1d5db', fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em'}}>Contact</a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors" style={{color: '#c4c7cd', fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em'}}>About</a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors" style={{color: '#c4c7cd', fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em'}}>Features</a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors" style={{color: '#c4c7cd', fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em'}}>Contact</a>
             </nav>
           </div>
         </div>
