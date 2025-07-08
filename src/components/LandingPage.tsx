@@ -45,7 +45,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartTest }) => {
           <button
             onClick={onStartTest}
             className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-purple-600 hover:to-indigo-600 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            style={{background: 'linear-gradient(to right, #6366f1, #8b5cf6)', color: 'white', fontWeight: 'bold', padding: '1rem 2rem', borderRadius: '0.75rem', fontSize: '1.125rem', transition: 'all 0.3s', transform: 'scale(1)', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)', border: 'none', cursor: 'pointer', fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em'}}
+            style={{background: 'linear-gradient(to right, #686aeb, #8b5cf6)', color: 'white', fontWeight: 'bold', padding: '1rem 2rem', borderRadius: '0.75rem', fontSize: '1.125rem', transition: 'all 0.3s', transform: 'scale(1)', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)', border: 'none', cursor: 'pointer', fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em'}}
           >
             Start Your Assessment
           </button>
