@@ -1,10 +1,7 @@
 import React from 'react';
+import type { StatData } from '../data/landingPageData';
 
-interface StatCardProps {
-  value: string;
-  label: string;
-  color: string;
-}
+type StatCardProps = StatData;
 
 const StatCard: React.FC<StatCardProps> = ({ value, label, color }) => {
   return (

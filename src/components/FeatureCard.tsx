@@ -1,13 +1,7 @@
 import React from 'react';
+import type { FeatureData } from '../data/landingPageData';
 
-interface FeatureCardProps {
-  icon: string;
-  title: string;
-  description: string;
-  gradientColors: {
-    from: string;
-    to: string;
-  };
+interface FeatureCardProps extends FeatureData {
   animationDelay?: string;
 }
 
