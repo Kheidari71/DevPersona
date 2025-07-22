@@ -135,6 +135,31 @@ export const TEST_QUESTIONS: Question[] = [
         score: 1 // Points toward 'collaborative'
       }
     ]
+  }, {
+    id: 3,
+    text: "When debugging a complex issue, you typically:",
+    options: [
+      {
+        id: 'a',
+        text: 'Analyze logs and use debugging tools systematically',
+        score: 1 // Points toward 'analytical'
+      },
+      {
+        id: 'b',
+        text: 'Try creative solutions and experiment with fixes',
+        score: 1 // Points toward 'creative'
+      },
+      {
+        id: 'c',
+        text: 'Follow a methodical step-by-step process',
+        score: 1 // Points toward 'systematic'
+      },
+      {
+        id: 'd',
+        text: 'Ask teammates for their insights and perspectives',
+        score: 1 // Points toward 'collaborative'
+      }
+    ]
   }
 ];
 
