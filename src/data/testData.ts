@@ -5,7 +5,8 @@
 export interface Question {
   id: number;                // Unique identifier for the question
   text: string;              // The actual question text
-  options: QuestionOption[]; // Array of possible answers (each targets different personality types)
+  options: QuestionOption[]; // Array of possible answers (each targets different
+  //  personality types)
 }
 
 // This interface defines what each answer option looks like
@@ -135,31 +136,181 @@ export const TEST_QUESTIONS: Question[] = [
         score: 1 // Points toward 'collaborative'
       }
     ]
-  }, {
-    id: 3,
-    text: "When debugging a complex issue, you typically:",
+  },
+  {
+    id: 4,
+    text: "How do you prefer to learn a new technology?",
     options: [
       {
         id: 'a',
-        text: 'Analyze logs and use debugging tools systematically',
-        score: 1 // Points toward 'analytical'
+        text: 'Read documentation and analyze examples',
+        score: 1 // Analytical
       },
       {
         id: 'b',
-        text: 'Try creative solutions and experiment with fixes',
-        score: 1 // Points toward 'creative'
+        text: 'Experiment and build something creative',
+        score: 1 // Creative
       },
       {
         id: 'c',
-        text: 'Follow a methodical step-by-step process',
-        score: 1 // Points toward 'systematic'
+        text: 'Follow a structured online course',
+        score: 1 // Systematic
       },
       {
         id: 'd',
-        text: 'Ask teammates for their insights and perspectives',
-        score: 1 // Points toward 'collaborative'
+        text: 'Join a study group or ask colleagues',
+        score: 1 // Collaborative
+      }
+    ]
+  },
+  {
+    id: 5,
+    text: "What motivates you most in a development project?",
+    options: [
+      {
+        id: 'a',
+        text: 'Solving challenging technical problems',
+        score: 1 // Analytical
+      },
+      {
+        id: 'b',
+        text: 'Creating beautiful and unique user experiences',
+        score: 1 // Creative
+      },
+      {
+        id: 'c',
+        text: 'Organizing tasks and optimizing workflow',
+        score: 1 // Systematic
+      },
+      {
+        id: 'd',
+        text: 'Collaborating and sharing knowledge',
+        score: 1 // Collaborative
+      }
+    ]
+  },
+  {
+    id: 6,
+    text: "How do you handle tight deadlines?",
+    options: [
+      {
+        id: 'a',
+        text: 'Prioritize tasks based on impact and data',
+        score: 1 // Analytical
+      },
+      {
+        id: 'b',
+        text: 'Find creative shortcuts and solutions',
+        score: 1 // Creative
+      },
+      {
+        id: 'c',
+        text: 'Create a detailed plan and checklist',
+        score: 1 // Systematic
+      },
+      {
+        id: 'd',
+        text: 'Coordinate with the team to divide work',
+        score: 1 // Collaborative
+      }
+    ]
+  },
+  {
+    id: 7,
+    text: "Which part of a software project do you enjoy most?",
+    options: [
+      {
+        id: 'a',
+        text: 'Architecting the system and logic',
+        score: 1 // Analytical
+      },
+      {
+        id: 'b',
+        text: 'Designing the UI and animations',
+        score: 1 // Creative
+      },
+      {
+        id: 'c',
+        text: 'Setting up processes and documentation',
+        score: 1 // Systematic
+      },
+      {
+        id: 'd',
+        text: 'Facilitating meetings and team syncs',
+        score: 1 // Collaborative
+      }
+    ]
+  },
+  {
+    id: 8,
+    text: "How do you approach code reviews?",
+    options: [
+      {
+        id: 'a',
+        text: 'Focus on logic and potential bugs',
+        score: 1 // Analytical
+      },
+      {
+        id: 'b',
+        text: 'Suggest creative improvements',
+        score: 1 // Creative
+      },
+      {
+        id: 'c',
+        text: 'Check for consistency and standards',
+        score: 1 // Systematic
+      },
+      {
+        id: 'd',
+        text: 'Encourage open discussion and feedback',
+        score: 1 // Collaborative
       }
     ]
   }
 ];
+
+// Section 4: Scoring Function and Result Type
+
+// The result type for the personality profile
+export interface PersonalityProfile {
+  scores: Record<string, number>; // e.g., { analytical: 3, creative: 2, ... }
+  primary: PersonalityCategory;
+  secondary: PersonalityCategory;
+}
+
+/**
+ * Calculates the personality profile based on user answers.
+ * @param selectedOptions - Array of selected option indices (0-3) for each question
+ * @returns PersonalityProfile
+ */
+export function calculatePersonalityProfile(selectedOptions: number[]): PersonalityProfile {
+  // Initialize scores for each category
+  const scores: Record<string, number> = {
+    analytical: 0,
+    creative: 0,
+    systematic: 0,
+    collaborative: 0
+  };
+
+  // For each answer, add score to the corresponding category
+  TEST_QUESTIONS.forEach((question, qIdx) => {
+    const optionIdx = selectedOptions[qIdx];
+    if (typeof optionIdx === 'number' && question.options[optionIdx]) {
+      // Map option index to category by order: a=analytical, b=creative, c=systematic, d=collaborative
+      const categoryId = PERSONALITY_CATEGORIES[optionIdx].id;
+      scores[categoryId] += question.options[optionIdx].score;
+    }
+  });
+
+  // Sort categories by score
+  const sortedCategories = PERSONALITY_CATEGORIES.slice().sort((a, b) => scores[b.id] - scores[a.id]);
+  const primary = sortedCategories[0];
+  const secondary = sortedCategories[1];
+
+  return {
+    scores,
+    primary,
+    secondary
+  };
+}
 
