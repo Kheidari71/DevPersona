@@ -10,7 +10,19 @@ const TestPage: React.FC<{ onTestComplete: (result: PersonalityProfile) => void 
 
   // Handler for when a user selects an option
   const handleOptionSelect = (optionIndex: number) => {
-    // We'll implement answer saving and next-question logic in the next step
+    // Save the selected answer
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = optionIndex;
+    setAnswers(newAnswers);
+
+    // If it's the last question, calculate the result and finish
+    if (currentQuestion === TEST_QUESTIONS.length - 1) {
+      const result = calculatePersonalityProfile(newAnswers);
+      onTestComplete(result);
+    } else {
+      // Otherwise, move to the next question
+      setCurrentQuestion(currentQuestion + 1);
+    }
   };
 
   // Get the current question object
