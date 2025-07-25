@@ -4,10 +4,34 @@ import type { PersonalityProfile } from '../data/testData';
 const ResultsPage: React.FC<{ result: PersonalityProfile; onRestart: () => void }> = ({ result, onRestart }) => {
   // Placeholder recommendations based on primary type
   const recommendations: Record<string, string> = {
-    analytical: 'You thrive on logic and problem-solving. Consider roles in backend development, data engineering, or algorithm design.',
-    creative: 'Your creativity shines! Explore UI/UX design, frontend development, or creative coding projects.',
-    collaborative: 'You work best in teams. Agile environments, project management, or developer advocacy could be great fits.',
-    experimental: 'You love to try new things. Look into prototyping, R&D, or emerging tech like AI and AR/VR.',
+    analytical: `You thrive on logic, critical thinking, and solving complex problems. Your analytical mindset makes you a natural fit for roles that require deep technical expertise and attention to detail. You excel at breaking down large challenges into manageable pieces and enjoy optimizing systems for performance and reliability.
+
+Ideal roles: Backend Developer, Data Engineer, Algorithm Specialist, DevOps Engineer
+Recommended technologies: Python, Go, SQL, cloud platforms (AWS, Azure, GCP)
+Work environment: You perform best in structured teams where you can focus on technical challenges and collaborate with other experts.
+
+Keep pushing your boundaries by tackling new algorithms, contributing to open-source projects, or exploring advanced topics like machine learning or distributed systems.`,
+    creative: `Your creativity and passion for innovation set you apart. You love designing beautiful, intuitive user experiences and thinking outside the box to solve problems. You’re drawn to projects where you can express your ideas visually and experiment with new technologies.
+
+Ideal roles: Frontend Developer, UI/UX Designer, Creative Technologist, Animation Engineer
+Recommended technologies: React, Figma, CSS-in-JS, Three.js, WebGL
+Work environment: You shine in collaborative, open-minded teams that value experimentation and design thinking.
+
+Consider building a portfolio of creative projects, learning about design systems, or exploring interactive media and creative coding communities.`,
+    systematic: `You are highly organized, methodical, and value structure in your work. You excel at creating efficient workflows, maintaining documentation, and ensuring that projects run smoothly from start to finish. Your attention to process and detail helps teams deliver high-quality software on time.
+
+Ideal roles: Project Manager, QA Engineer, Systems Architect, Scrum Master
+Recommended technologies: Jira, Confluence, TypeScript, CI/CD tools
+Work environment: You thrive in environments with clear processes, well-defined goals, and opportunities to optimize team performance.
+
+Explore certifications in project management (like Scrum or Kanban), contribute to process improvement initiatives, or mentor others in best practices.`,
+    collaborative: `You are a natural team player and communicator. You enjoy working closely with others, sharing knowledge, and building consensus. Your empathy and leadership skills make you a valuable asset in any team, especially in roles that require cross-functional collaboration.
+
+Ideal roles: Developer Advocate, Team Lead, Agile Coach, Full-Stack Developer
+Recommended technologies: Slack, GitHub, Node.js, REST APIs
+Work environment: You excel in dynamic, people-focused teams where open communication and shared goals are prioritized.
+
+Consider leading team meetings, organizing knowledge-sharing sessions, or getting involved in developer communities and events to expand your impact.`,
   };
 
   const primaryKey = result.primary.id;
