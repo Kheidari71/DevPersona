@@ -37,6 +37,12 @@ Consider leading team meetings, organizing knowledge-sharing sessions, or gettin
   const primaryKey = result.primary.id;
   const recommendation = recommendations[primaryKey] || 'Explore different areas of development to find your passion!';
 
+  // Social sharing setup
+  const appUrl = "https://devpersona.app"; // Replace with your real URL when deployed
+  const shareText = `I just discovered my developer personality: ${result.primary.name}! 🚀\n\n${recommendation}\n\nFind yours at ${appUrl}`;
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(appUrl)}`;
+  const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(appUrl)}`;
+
   return (
     <div className="max-w-xl mx-auto p-6 bg-gray-900 rounded-lg shadow-lg mt-8 text-white">
       <h2 className="text-3xl font-bold mb-4">Your Developer Personality</h2>
@@ -58,6 +64,34 @@ Consider leading team meetings, organizing knowledge-sharing sessions, or gettin
       <div className="mb-8 p-4 bg-gray-800 rounded">
         <h4 className="text-lg font-semibold mb-2 text-indigo-300">Recommendation</h4>
         <p className="text-gray-200">{recommendation}</p>
+      </div>
+      {/* Social Sharing Buttons */}
+      <div className="mb-6 flex flex-col md:flex-row gap-4">
+        <a
+          href={twitterUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-4 py-2 rounded bg-blue-500 hover:bg-blue-600 text-white font-semibold transition-colors text-center"
+        >
+          Share on Twitter
+        </a>
+        <a
+          href={linkedInUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-4 py-2 rounded bg-blue-700 hover:bg-blue-800 text-white font-semibold transition-colors text-center"
+        >
+          Share on LinkedIn
+        </a>
+        <button
+          onClick={() => {
+            navigator.clipboard.writeText(shareText);
+            alert('Result copied to clipboard!');
+          }}
+          className="px-4 py-2 rounded bg-gray-700 hover:bg-gray-800 text-white font-semibold transition-colors text-center"
+        >
+          Copy Result
+        </button>
       </div>
       <button
         className="mt-4 px-6 py-3 rounded bg-indigo-600 hover:bg-indigo-700 text-white font-bold transition-colors duration-200"
