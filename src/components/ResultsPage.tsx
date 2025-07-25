@@ -50,6 +50,31 @@ Consider leading team meetings, organizing knowledge-sharing sessions, or gettin
         <span className="text-xl">Dominant Type:</span>
         <span className="ml-2 text-2xl font-extrabold text-indigo-400">{result.primary.id}</span>
       </div>
+      
+      {/* Frontend/Backend Track Result */}
+      <div className="mb-6 p-4 bg-gray-800 rounded-lg border-l-4 border-accent-500">
+        <h3 className="text-lg font-semibold mb-2 text-accent-400">Development Track</h3>
+        <div className="flex items-center gap-3">
+          <span className="text-gray-300">You lean toward:</span>
+          <span className={`px-3 py-1 rounded-full text-sm font-bold ${
+            result.trackResult === 'frontend' 
+              ? 'bg-purple-600 text-white' 
+              : result.trackResult === 'backend'
+              ? 'bg-green-600 text-white'
+              : 'bg-blue-600 text-white'
+          }`}>
+            {result.trackResult === 'frontend' && '🎨 Frontend Development'}
+            {result.trackResult === 'backend' && '⚙️ Backend Development'}
+            {result.trackResult === 'balanced' && '🔄 Full-Stack Development'}
+          </span>
+        </div>
+        <p className="text-sm text-gray-400 mt-2">
+          {result.trackResult === 'frontend' && 'You enjoy building user interfaces, working with design, and creating interactive experiences.'}
+          {result.trackResult === 'backend' && 'You prefer working with servers, databases, APIs, and system architecture.'}
+          {result.trackResult === 'balanced' && 'You have balanced interests across the full development stack - frontend and backend appeal to you equally.'}
+        </p>
+      </div>
+      
       <div className="mb-6">
         <h3 className="text-lg font-semibold mb-2">Your Scores:</h3>
         <ul className="space-y-1">

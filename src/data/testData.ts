@@ -14,6 +14,7 @@ export interface QuestionOption {
   id: string;    // Unique identifier for the option (like 'a', 'b', 'c', 'd')
   text: string;  // The actual answer text
   score: number; // How many points this answer gives to its category
+  track?: 'frontend' | 'backend'; // New: which track this option leans toward
 }
 
 // This interface defines what a personality category looks like
@@ -266,7 +267,29 @@ export const TEST_QUESTIONS: Question[] = [
         score: 1 // Collaborative
       }
     ]
-  }
+  },
+  // Question 9
+  {
+    id: 9,
+    text: "Which task excites you the most?",
+    options: [
+      { id: 'a', text: 'Optimizing database queries for speed', score: 1, track: 'backend' },
+      { id: 'b', text: 'Designing a visually stunning landing page', score: 1, track: 'frontend' },
+      { id: 'c', text: 'Automating deployment pipelines', score: 1, track: 'backend' },
+      { id: 'd', text: 'Creating interactive UI animations', score: 1, track: 'frontend' },
+    ]
+  },
+  // Question 10
+  {
+    id: 10,
+    text: "What do you enjoy learning about more?",
+    options: [
+      { id: 'a', text: 'Server-side frameworks and APIs', score: 1, track: 'backend' },
+      { id: 'b', text: 'CSS, design systems, and accessibility', score: 1, track: 'frontend' },
+      { id: 'c', text: 'Cloud infrastructure and scaling', score: 1, track: 'backend' },
+      { id: 'd', text: 'Modern JavaScript frameworks (React, Vue, etc.)', score: 1, track: 'frontend' },
+    ]
+  },
 ];
 
 // Section 4: Scoring Function and Result Type
@@ -276,6 +299,7 @@ export interface PersonalityProfile {
   scores: Record<string, number>; // e.g., { analytical: 3, creative: 2, ... }
   primary: PersonalityCategory;
   secondary: PersonalityCategory;
+  trackResult: 'frontend' | 'backend' | 'balanced'; // New: frontend/backend evaluation
 }
 
 /**
@@ -291,14 +315,20 @@ export function calculatePersonalityProfile(selectedOptions: number[]): Personal
     systematic: 0,
     collaborative: 0
   };
+  let frontendPoints = 0;
+  let backendPoints = 0;
 
-  // For each answer, add score to the corresponding category
+  // For each answer, add score to the corresponding category and track
   TEST_QUESTIONS.forEach((question, qIdx) => {
     const optionIdx = selectedOptions[qIdx];
     if (typeof optionIdx === 'number' && question.options[optionIdx]) {
       // Map option index to category by order: a=analytical, b=creative, c=systematic, d=collaborative
       const categoryId = PERSONALITY_CATEGORIES[optionIdx].id;
       scores[categoryId] += question.options[optionIdx].score;
+      // Track frontend/backend
+      const track = question.options[optionIdx].track;
+      if (track === 'frontend') frontendPoints++;
+      if (track === 'backend') backendPoints++;
     }
   });
 
@@ -307,10 +337,16 @@ export function calculatePersonalityProfile(selectedOptions: number[]): Personal
   const primary = sortedCategories[0];
   const secondary = sortedCategories[1];
 
+  // Determine frontend/backend result
+  let trackResult: 'frontend' | 'backend' | 'balanced' = 'balanced';
+  if (frontendPoints > backendPoints) trackResult = 'frontend';
+  else if (backendPoints > frontendPoints) trackResult = 'backend';
+
   return {
     scores,
     primary,
-    secondary
+    secondary,
+    trackResult
   };
 }
 

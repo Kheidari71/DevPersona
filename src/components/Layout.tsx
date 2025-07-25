@@ -6,7 +6,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800" style={{minHeight: '100vh', background: 'linear-gradient(to bottom right, #111827, #111827, #1f2937)'}}>
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800" style={{minHeight: '100vh', background: 'linear-gradient(to bottom right, #111827, #111827, #1f2937)'}}>
       {/* Header */}
       <header className="border-b border-gray-700 bg-gray-800/50 backdrop-blur-sm" style={{borderBottom: '1px solid #374151', backgroundColor: 'rgba(31, 41, 55, 0.5)', backdropFilter: 'blur(4px)'}}>
         <div className="max-w-6xl mx-auto px-4 py-4" style={{maxWidth: '72rem', margin: '0 auto', padding: '1rem'}}>
