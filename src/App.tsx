@@ -3,6 +3,7 @@ import Layout from './components/Layout'
 import LandingPage from './components/LandingPage'
 import TestPage from './components/TestPage'
 import ResultsPage from './components/ResultsPage'
+import { LanguageProvider } from './contexts/LanguageContext'
 import type { PersonalityProfile } from './data/testData'
 
 type AppState = 'landing' | 'test' | 'results';
@@ -25,21 +26,31 @@ function App() {
     setCurrentState('test');
   };
 
+  const handleNavigateHome = () => {
+    setCurrentState('landing');
+    setTestResults(null);
+  };
+
   return (
-    <Layout>
-      {currentState === 'landing' && (
-        <LandingPage onStartTest={handleStartTest} />
-      )}
-      {currentState === 'test' && (
-        <TestPage onTestComplete={handleTestComplete} />
-      )}
-      {currentState === 'results' && testResults && (
-        <ResultsPage
-          result={testResults}
-          onRestart={handleRetakeTest}
-        />
-      )}
-    </Layout>
+    <LanguageProvider>
+      <Layout onNavigateHome={handleNavigateHome}>
+        {currentState === 'landing' && (
+          <LandingPage onStartTest={handleStartTest} />
+        )}
+        {currentState === 'test' && (
+          <TestPage 
+            onTestComplete={handleTestComplete}
+            onGoBack={handleNavigateHome}
+          />
+        )}
+        {currentState === 'results' && testResults && (
+          <ResultsPage
+            result={testResults}
+            onRestart={handleRetakeTest}
+          />
+        )}
+      </Layout>
+    </LanguageProvider>
   )
 }
 

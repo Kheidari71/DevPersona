@@ -1,43 +1,38 @@
 import React from 'react';
+import type { ReactNode } from 'react';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
+  onNavigateHome?: () => void;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children, onNavigateHome }) => {
+  const { t } = useLanguage();
+
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800" style={{minHeight: '100vh', background: 'linear-gradient(to bottom right, #111827, #111827, #1f2937)'}}>
+    <div className="flex flex-col min-h-screen" style={{backgroundColor: '#0a0a0a', color: 'white', fontFamily: 'Inter, sans-serif'}}>
       {/* Header */}
-      <header className="border-b border-gray-700 bg-gray-800/50 backdrop-blur-sm" style={{borderBottom: '1px solid #374151', backgroundColor: 'rgba(31, 41, 55, 0.5)', backdropFilter: 'blur(4px)'}}>
-        <div className="max-w-6xl mx-auto px-4 py-4" style={{maxWidth: '72rem', margin: '0 auto', padding: '1rem'}}>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center" style={{width: '2rem', height: '2rem', background: 'linear-gradient(to right, #6366f1, #8b5cf6)', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                <span className="text-white font-bold text-lg" style={{fontFamily: 'Orbitron, monospace', letterSpacing: '0.05em'}}>D</span>
-              </div>
-              <h1 className="text-white text-xl font-bold" style={{fontFamily: 'Orbitron, monospace', letterSpacing: '0.05em'}}>DevPersona</h1>
-            </div>
-            <nav className="hidden md:flex items-center space-x-6">
-              <a href="#" className="text-gray-300 hover:text-white transition-colors" style={{color: '#c4c7cd', fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em'}}>About</a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors" style={{color: '#c4c7cd', fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em'}}>Features</a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors" style={{color: '#c4c7cd', fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em'}}>Contact</a>
-            </nav>
-          </div>
-        </div>
+      <header className="p-4 border-b border-gray-800" style={{borderBottomColor: '#1f2937', padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+        <h1 
+          className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent cursor-pointer hover:opacity-80 transition-opacity" 
+          style={{fontSize: '1.5rem', fontWeight: 'bold', background: 'linear-gradient(to right, #6366f1, #8b5cf6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontFamily: 'Orbitron, monospace', cursor: 'pointer'}}
+          onClick={onNavigateHome}
+        >
+          DevPersona
+        </h1>
+        <LanguageSwitcher />
       </header>
 
       {/* Main Content */}
-      <main className="flex-1" style={{flex: '1'}}>
+      <main className="flex-1" style={{flex: '1', maxWidth: '100%', width: '100%', margin: '0 auto', padding: '0 1rem'}}>
         {children}
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-700 bg-gray-800/50 backdrop-blur-sm" style={{borderTop: '1px solid #374151', backgroundColor: 'rgba(31, 41, 55, 0.5)', backdropFilter: 'blur(4px)'}}>
-        <div className="max-w-6xl mx-auto px-4 py-6" style={{maxWidth: '72rem', margin: '0 auto', padding: '1rem 1.5rem'}}>
-          <div className="text-center text-gray-400 text-sm" style={{color: '#9ca3af', fontSize: '0.875rem', textAlign: 'center', fontFamily: 'Inter, sans-serif'}}>
-            <p>© 2024 DevPersona. Built with React & TypeScript</p>
-          </div>
-        </div>
+      <footer className="p-4 text-center text-gray-400 border-t border-gray-800" style={{borderTopColor: '#1f2937', padding: '1rem', textAlign: 'center', color: '#9ca3af', fontFamily: 'Space Grotesk, sans-serif'}}>
+        <p>{t('layout.footer')}</p>
       </footer>
     </div>
   );
