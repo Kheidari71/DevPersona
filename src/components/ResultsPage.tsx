@@ -9,7 +9,7 @@ const ResultsPage: React.FC<{ result: PersonalityProfile; onRestart: () => void 
   const recommendation = t(`personalities.${result.primary.id}.recommendation`);
 
   // Social sharing setup
-  const appUrl = "https://devpersona.app"; // Replace with your real URL when deployed
+  const appUrl = "https://dev-persona-one.vercel.app/"; // Replace with your real URL when deployed
   const shareText = `I just discovered my developer personality: ${t(`personalities.${result.primary.id}.name`)}! 🚀\n\n${recommendation}\n\nFind yours at ${appUrl}`;
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(appUrl)}`;
   const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(appUrl)}`;

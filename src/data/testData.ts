@@ -350,3 +350,4 @@ export function calculatePersonalityProfile(selectedOptions: number[]): Personal
   };
 }
 
+ 
