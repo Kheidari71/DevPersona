@@ -10,9 +10,25 @@ const ResultsPage: React.FC<{ result: PersonalityProfile; onRestart: () => void 
 
   // Social sharing setup
   const appUrl = "https://dev-persona-one.vercel.app/"; // Replace with your real URL when deployed
-  const shareText = `I just discovered my developer personality: ${t(`personalities.${result.primary.id}.name`)}! 🚀\n\n${recommendation}\n\nFind yours at ${appUrl}`;
+  
+  // More engaging share text for LinkedIn
+  const personalityName = t(`personalities.${result.primary.id}.name`);
+  const trackLabel = t(`results.trackLabels.${result.trackResult}`);
+  
+  const shareText = `🚀 I just discovered my developer personality: ${personalityName}!
+
+✨ Key insights about my coding style:
+• Development track: ${trackLabel}
+• ${recommendation}
+
+💡 This interactive assessment helped me understand my strengths and career direction better!
+
+🔗 Discover your developer personality: ${appUrl}
+
+#WebDevelopment #TypeScript #React #DeveloperPersonality #TechCareer #Programming`;
+
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(appUrl)}`;
-  const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(appUrl)}`;
+  const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(appUrl)}&title=${encodeURIComponent('DevPersona - Developer Personality Test')}&summary=${encodeURIComponent(shareText)}`;
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-gray-900 rounded-lg shadow-lg mt-8 text-white">
