@@ -9,7 +9,7 @@ const ResultsPage: React.FC<{ result: PersonalityProfile; onRestart: () => void 
   const recommendation = t(`personalities.${result.primary.id}.recommendation`);
 
   // Social sharing setup
-  const appUrl = "https://dev-persona-one.vercel.app/"; // Replace with your real URL when deployed
+  const appUrl = "https://dev-persona-one.vercel.app/?ref=linkedin"; // Cache-busting parameter
   
   // More engaging share text for LinkedIn
   const personalityName = t(`personalities.${result.primary.id}.name`);
