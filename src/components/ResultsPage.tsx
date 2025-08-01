@@ -28,7 +28,10 @@ const ResultsPage: React.FC<{ result: PersonalityProfile; onRestart: () => void 
 #WebDevelopment #TypeScript #React #DeveloperPersonality #TechCareer #Programming`;
 
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(appUrl)}`;
-  const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(appUrl)}&title=${encodeURIComponent('DevPersona - Developer Personality Test')}&summary=${encodeURIComponent(shareText)}`;
+  
+  // LinkedIn sharing - using shareArticle API for better text handling
+  const linkedInShareText = `🚀 I just discovered my developer personality: ${personalityName}! ✨ Development track: ${trackLabel} 💡 ${recommendation}`;
+  const linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(appUrl)}&title=${encodeURIComponent('DevPersona - Developer Personality Test')}&summary=${encodeURIComponent(linkedInShareText)}&source=DevPersona`;
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-gray-900 rounded-lg shadow-lg mt-8 text-white">
