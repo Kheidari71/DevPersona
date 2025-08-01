@@ -34,7 +34,7 @@ export const featuresData: FeatureData[] = [
     }
   },
   {
-    icon: '🚀',
+    icon: '📊',
     title: 'Instant Results',
     description: 'Complete the assessment in minutes and get detailed, actionable insights immediately. No waiting, no complexity.',
     gradientColors: {

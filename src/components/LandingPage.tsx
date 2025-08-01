@@ -32,7 +32,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartTest }) => {
       }
     },
     {
-      icon: '🚀',
+      icon: '📊',
       title: t('features.items.2.title'),
       description: t('features.items.2.description'),
       gradientColors: {

@@ -15,7 +15,7 @@ const ResultsPage: React.FC<{ result: PersonalityProfile; onRestart: () => void 
   const personalityName = t(`personalities.${result.primary.id}.name`);
   const trackLabel = t(`results.trackLabels.${result.trackResult}`);
   
-  const shareText = `🚀 I just discovered my developer personality: ${personalityName}!
+  const shareText = `📊 I just discovered my developer personality: ${personalityName}!
 
 ✨ Key insights about my coding style:
 • Development track: ${trackLabel}
@@ -30,7 +30,7 @@ const ResultsPage: React.FC<{ result: PersonalityProfile; onRestart: () => void 
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(appUrl)}`;
   
   // LinkedIn sharing - try direct compose approach
-  const linkedInShareText = `🚀 I just discovered my developer personality: ${personalityName}!
+  const linkedInShareText = `📊 I just discovered my developer personality: ${personalityName}!
 
 ✨ Development track: ${trackLabel}
 💡 ${recommendation}
