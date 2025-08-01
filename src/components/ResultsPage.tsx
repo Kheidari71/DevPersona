@@ -29,9 +29,17 @@ const ResultsPage: React.FC<{ result: PersonalityProfile; onRestart: () => void 
 
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(appUrl)}`;
   
-  // LinkedIn sharing - using shareArticle API for better text handling
-  const linkedInShareText = `🚀 I just discovered my developer personality: ${personalityName}! ✨ Development track: ${trackLabel} 💡 ${recommendation}`;
-  const linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(appUrl)}&title=${encodeURIComponent('DevPersona - Developer Personality Test')}&summary=${encodeURIComponent(linkedInShareText)}&source=DevPersona`;
+  // LinkedIn sharing - try direct compose approach
+  const linkedInShareText = `🚀 I just discovered my developer personality: ${personalityName}!
+
+✨ Development track: ${trackLabel}
+💡 ${recommendation}
+
+🔗 Discover yours: ${appUrl}
+
+#WebDevelopment #TypeScript #React #DeveloperPersonality #TechCareer`;
+  
+  const linkedInUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(linkedInShareText)}`;
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-gray-900 rounded-lg shadow-lg mt-8 text-white">
@@ -76,6 +84,14 @@ const ResultsPage: React.FC<{ result: PersonalityProfile; onRestart: () => void 
         <h4 className="text-lg font-semibold mb-2 text-indigo-300">{t('results.recommendation')}</h4>
         <p className="text-gray-200">{recommendation}</p>
       </div>
+      
+      {/* Sharing Instructions */}
+      <div className="mb-4 p-3 bg-blue-900/30 rounded-lg border border-blue-700/50">
+        <p className="text-sm text-blue-200">
+          💡 <strong>Best way to share:</strong> Use "📋 Copy LinkedIn Post" button, then manually paste in LinkedIn for the full personalized message!
+        </p>
+      </div>
+      
       {/* Social Sharing Buttons */}
       <div className="mb-6 flex flex-col md:flex-row gap-4">
         <a
@@ -96,12 +112,12 @@ const ResultsPage: React.FC<{ result: PersonalityProfile; onRestart: () => void 
         </a>
         <button
           onClick={() => {
-            navigator.clipboard.writeText(shareText);
-            alert('Result copied to clipboard!');
+            navigator.clipboard.writeText(linkedInShareText);
+            alert('LinkedIn post text copied! Now paste it manually in LinkedIn.');
           }}
-          className="px-4 py-2 rounded bg-gray-700 hover:bg-gray-800 text-white font-semibold transition-colors text-center"
+          className="px-4 py-2 rounded bg-green-600 hover:bg-green-700 text-white font-semibold transition-colors text-center"
         >
-          {t('results.copyResult')}
+          📋 Copy LinkedIn Post
         </button>
       </div>
       <button
